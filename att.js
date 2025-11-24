@@ -7,52 +7,52 @@ const repasses = JSON.parse(dados);
 console.log("Total de repasses: " , repasses.length,"\n");
 
 
-const sucesso = repasses.filter(r => r.status === "sucesso");
-const falha = repasses.filter(r => r.status === "falha");
+const sucesso = repasses.filter(at => at.status === "sucesso");
+const falha = repasses.filter(at => at.status === "falha");
 
 
 const total_Sucesso = sucesso.length;
 
-const SucessoOrgao = sucesso.reduce((acc, r) => {
-  acc[r.orgao] = (acc[r.orgao] || 0) + 1;
-  return acc;
+const SucessoOrgao = sucesso.reduce((tot, at) => {
+  tot[at.orgao] = (tot[at.orgao] || 0) + 1;
+  return tot;
 }, {});
 
 
-const valorTotalSucesso = sucesso.reduce((sum, r) => sum + r.valor, 0);
+const valorTotalSucesso = sucesso.reduce((totl, at) => totl + at.valor, 0);
 
-const valorSucessoPorOrgao = sucesso.reduce((acc, r) => {
-  acc[r.orgao] = (acc[r.orgao] || 0) + r.valor;
-  return acc;
+const valorSucessoPorOrgao = sucesso.reduce((tot, at) => {
+  tot[at.orgao] = (tot[at.orgao] || 0) + at.valor;
+  return tot;
 }, {});
 
 
 const total_Falha = falha.length;
 
 
-const falha_Orgao = falha.reduce((acc, r) => {
-  acc[r.orgao] = (acc[r.orgao] || 0) + 1;
-  return acc;
+const falha_Orgao = falha.reduce((tot, at) => {
+  tot[at.orgao] = (tot[at.orgao] || 0) + 1;
+  return tot;
 }, {});
 
-const falhapormotivo = falha.reduce((acc, r) => {
-  acc[r.motivo] = (acc[r.motivo] || 0) + 1;
-  return acc;
-}, {});
-
-
-const Falha_valor_total = falha.reduce((sum, r) => sum + r.valor, 0);
-
-
-const valor_Falha_Orgao = falha.reduce((acc, r) => {
-  acc[r.orgao] = (acc[r.orgao] || 0) + r.valor;
-  return acc;
+const falhapormotivo = falha.reduce((tot, at) => {
+  tot[at.motivo] = (tot[at.motivo] || 0) + 1;
+  return tot;
 }, {});
 
 
-const valor_Falha_Motivo = falha.reduce((acc, r) => {
-  acc[r.motivo] = (acc[r.motivo] || 0) + r.valor;
-  return acc;
+const Falha_valor_total = falha.reduce((totl, at) => totl + at.valor, 0);
+
+
+const valor_Falha_Orgao = falha.reduce((tot, at) => {
+  tot[at.orgao] = (tot[at.orgao] || 0) + t.valor;
+  return tot;
+}, {});
+
+
+const valor_Falha_Motivo = falha.reduce((tot, at) => {
+  tot[at.motivo] = (tot[at.motivo] || 0) + at.valor;
+  return tot;
 }, {});
 
 
@@ -72,44 +72,44 @@ console.log("Valor total por órgão:", valor_Falha_Orgao);
 console.log("Valor total por motivo:", valor_Falha_Motivo);
 
 
-const MaiorRepass = repasses.reduce((max, r) => r.valor > max.valor ? r : max, repasses[0]);
+const MaiorRepass = repasses.reduce((max, at) => at.valor > max.valor ? at : max, repasses[0]);
 
-const MenorRepass = repasses.reduce((min, r) => r.valor < min.valor ? r : min, repasses[0]);
+const MenorRepass = repasses.reduce((min, at) => at.valor < min.valor ? at : min, repasses[0]);
 
 
-const repasses_Dia = repasses.reduce((acc, r) => {
-  acc[r.data] = (acc[r.data] || 0) + 1;
-  return acc;
+const repasses_Dia = repasses.reduce((totl, at) => {
+  totl[at.data] = (totl[at.data] || 0) + 1;
+  return totl;
 }, {});
 const diamaisrepasses = Object.entries(repasses_Dia).reduce((a, b) => b[1] > a[1] ? b : a);
 
 
-const repassesPorOrgao = repasses.reduce((acc, r) => {
-  acc[r.orgao] = (acc[r.orgao] || 0) + 1;
-  return acc;
+const repassesPorOrgao = repasses.reduce((totl, at) => {
+  totl[at.orgao] = (totl[at.orgao] || 0) + 1;
+  return totl;
 }, {});
 const orgaoMaisRepasses = Object.entries(repassesPorOrgao).reduce((a, b) => b[1] > a[1] ? b : a);
 
 
-const sucesso2 = repasses.filter(r => r.status === "sucesso");
-const sucessoPorOrgao2 = sucesso.reduce((acc, r) => {
-  acc[r.orgao] = (acc[r.orgao] || 0) + 1;
-  return acc;
+const sucesso2 = repasses.filter(at => at.status === "sucesso");
+const sucessoPorOrgao2 = sucesso.reduce((totl, at) => {
+  totl[at.orgao] = (totl[at.orgao] || 0) + 1;
+  return totl;
 }, {});
-const orgaoMaisSucesso = Object.entries(SucessoOrgao).reduce((a, b) => b[1] > a[1] ? b : a);
+const orgaomaissucesso = Object.entries(SucessoOrgao).reduce((a, b) => b[1] > a[1] ? b : a);
 
 
 const falha2 = repasses.filter(r => r.status === "falha");
-const falha_Orgao2 = falha.reduce((acc, r) => {
-  acc[r.orgao] = (acc[r.orgao] || 0) + 1;
-  return acc;
+const falha_Orgao2 = falha.reduce((totl, at) => {
+  totl[at.orgao] = (totl[at.orgao] || 0) + 1;
+  return totl;
 }, {});
-const orgaoMaisFalha = Object.entries(falha_Orgao).reduce((a, b) => b[1] > a[1] ? b : a);
+const orgaomaisfalha = Object.entries(falha_Orgao).reduce((a, b) => b[1] > a[1] ? b : a);
 
 
-const falhapormotivo2 = falha.reduce((acc, r) => {
-  acc[r.motivo] = (acc[r.motivo] || 0) + 1;
-  return acc;
+const falhapormotivo2 = falha.reduce((totl, at) => {
+  totl[at.motivo] = (totl[at.motivo] || 0) + 1;
+  return totl;
 }, {});
 const motivomaisfalha = Object.entries(falhapormotivo).reduce((a, b) => b[1] > a[1] ? b : a);
 
@@ -129,10 +129,10 @@ console.log("\nÓrgão com mais repasses:");
 console.log(`${orgaoMaisRepasses[0]} com ${orgaoMaisRepasses[1]} repasses`);
 
 console.log("\nÓrgão com mais repasses sucedidos:");
-console.log(`${orgaoMaisSucesso[0]} com ${orgaoMaisSucesso[1]} repasses`);
+console.log(`${orgaomaissucesso[0]} com ${orgaomaissucesso[1]} repasses`);
 
 console.log("\nÓrgão com mais repasses falhos:");
-console.log(`${orgaoMaisFalha[0]} com ${orgaoMaisFalha[1]} repasses`);
+console.log(`${orgaomaisfalha[0]} com ${orgaomaisfalha[1]} repasses`);
 
 console.log("\nMotivo de falha com mais repasses:");
 console.log(`${motivomaisfalha[0]} com ${motivomaisfalha[1]} repasses\n`);
@@ -140,17 +140,17 @@ console.log(`${motivomaisfalha[0]} com ${motivomaisfalha[1]} repasses\n`);
 
 const Orgao_escolhido = "Detran";
 
-const resultados = repasses.filter(r => r.orgao === Orgao_escolhido && r.status === "sucesso");
+const resultados = repasses.filter(at => at.orgao === Orgao_escolhido && at.status === "sucesso");
 
 console.log(`##### Repasses sucedidos do orgão: ${Orgao_escolhido} #####`);
 console.log(`Repasses Totais: ${resultados.length}\n`);
 
-resultados.forEach((r, index) => {
-  console.log(`Repasso #${index + 1}:`);
-  console.log(`  Órgão: ${r.orgao}`);
-  console.log(`  Data: ${r.data}`);
-  console.log(`  Valor: R$ ${r.valor}`);
-  console.log(`  Status: ${r.status}`);
+resultados.forEach((at, elem) => {
+  console.log(`Repasso #${elem + 1}:`);
+  console.log(`  Órgão: ${at.orgao}`);
+  console.log(`  Data: ${at.data}`);
+  console.log(`  Valor: R$ ${at.valor}`);
+  console.log(`  Status: ${at.status}`);
   console.log("##############################");
 });
 
@@ -160,14 +160,14 @@ const repassesFalhos = repasses.filter(r => r.status === "falha");
 console.log("##### Repasses que falharam #####");
 console.log(`Total de repasses com falha: ${repassesFalhos.length}\n`);
 
-repassesFalhos.forEach((r, index) => {
-  console.log(`Repasso #${index + 1}:`);
-  console.log(`  Órgão: ${r.orgao}`);
-  console.log(`  Data: ${r.data}`);
-  console.log(`  Valor: R$ ${r.valor}`);
-  console.log(`  Status: ${r.status}`);
-  if (r.motivo) {
-    console.log(`  Motivo da falha: ${r.motivo}`);
+repassesFalhos.forEach((at, elem) => {
+  console.log(`Repasso #${elem + 1}:`);
+  console.log(`  Órgão: ${at.orgao}`);
+  console.log(`  Data: ${at.data}`);
+  console.log(`  Valor: R$ ${at.valor}`);
+  console.log(`  Status: ${at.status}`);
+  if (at.motivo) {
+    console.log(`  Motivo da falha: ${at.motivo}`);
   }
   console.log("##############################");
 });
