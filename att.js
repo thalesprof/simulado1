@@ -45,7 +45,7 @@ const Falha_valor_total = falha.reduce((totl, at) => totl + at.valor, 0);
 
 
 const valor_Falha_Orgao = falha.reduce((tot, at) => {
-  tot[at.orgao] = (tot[at.orgao] || 0) + t.valor;
+  tot[at.orgao] = (tot[at.orgao] || 0) + at.valor;
   return tot;
 }, {});
 
@@ -171,3 +171,25 @@ repassesFalhos.forEach((at, elem) => {
   }
   console.log("##############################");
 });
+
+const orgaototal = repasses.reduce((tot, at) => {
+  tot[at.orgao] = (tot[at.orgao] || 0) + at.valor;
+  return tot;
+}, {});
+
+const orgaoinvalidos = falha.reduce((tot, at) => {
+  tot[at.orgao] = (tot[at.orgao] || 0) + at.valor;
+  return tot;
+}, {});
+
+const total_f = {};
+
+Object.keys(orgaototal).forEach(orgao => {
+  const total = orgaototal[orgao] || 0;
+  const invalido = orgaoinvalidos[orgao] || 0;
+  total_f[orgao] = total - invalido;
+});
+
+console.log("\n##### Valor reduzido dos orgãos #####");
+console.log(total_f);
+
